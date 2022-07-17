@@ -3,6 +3,7 @@ const gameBoard = (() => {
     const gameSquares = document.querySelectorAll('.square');
     const palyerTurnDiv = document.querySelector('.palyer-turn');
     let playing = false;
+    let nbrOfRounds = 0;
 
     const StartPlaying = (playerX, playerO) => {
         console.log("Start Playing... ");
@@ -25,6 +26,7 @@ const gameBoard = (() => {
         playerO.restart();
 
         playerX.playerTurn = true;
+        nbrOfRounds = 0;
         palyerTurnDiv.innerHTML = `Player ${playerX.name}'s turn `;
         gameSquares.forEach(square => { square.innerHTML = ''; });
         playing = true;
@@ -32,6 +34,8 @@ const gameBoard = (() => {
     };
 
     const playRound = (square, playerX, playerO) => {
+
+        nbrOfRounds++;
 
         if (playerX.isUsedSquar(square.id) || playerO.isUsedSquar(square.id)) {
 
@@ -47,8 +51,15 @@ const gameBoard = (() => {
             playerX.addChosenSquares(square.id);
             playerX.showSquars();
             if (playerX.isWiner()) {
+
                 playing = false;
                 palyerTurnDiv.innerHTML = `Player ${playerX.name} has won!`;
+
+            } else if (nbrOfRounds == 9) {
+
+                playing = false;
+                palyerTurnDiv.innerHTML = `It's a draw!`;
+
             }
 
         } else {
@@ -61,8 +72,15 @@ const gameBoard = (() => {
             playerO.addChosenSquares(square.id);
             playerO.showSquars();
             if (playerO.isWiner()) {
+
                 playing = false;
                 palyerTurnDiv.innerHTML = `Player ${playerO.name} has won!`;
+
+            } else if (nbrOfRounds == 9) {
+
+                playing = false;
+                palyerTurnDiv.innerHTML = `It's a draw!`;
+
             }
 
         }
