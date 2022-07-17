@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+}
+
+.gameContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.palyer-turn {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.gameBoard {
+  background-color: black;
+  height: 300px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 2px;
+}
+
+.square {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 50px;
+  margin: 2px;
+}
+
+.square:hover {
+  background-color: #d8e4e9;
+  cursor: pointer;
+}
